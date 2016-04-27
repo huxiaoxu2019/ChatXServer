@@ -11,7 +11,7 @@ public class ServerCrontab {
 	public ServerCrontab() {}
 	
 	public static void checkClientSocket() {
-		if(ServerCrontab.isClientSockedChecked()) {
+		if(ServerCrontab.isClientSocketChecked()) {
 			System.out.println("has already checked.");
 			return;
 		} else {
@@ -28,7 +28,7 @@ public class ServerCrontab {
         service.scheduleAtFixedRate(runnable, 10, 10, TimeUnit.SECONDS);  
 	}
 
-	public static boolean isClientSockedChecked() {
+	public static boolean isClientSocketChecked() {
 		return clientSockedChecked;
 	}
 
