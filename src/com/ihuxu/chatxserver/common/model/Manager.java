@@ -1,4 +1,4 @@
-package com.ihuxu.chatx.common.model;
+package com.ihuxu.chatxserver.common.model;
 
 public interface Manager {
 	

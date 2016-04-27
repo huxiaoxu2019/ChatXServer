@@ -1,4 +1,4 @@
-package com.ihuxu.chatx.common.server;
+package com.ihuxu.chatxserver.util.server;
 
 import java.util.HashMap;
 

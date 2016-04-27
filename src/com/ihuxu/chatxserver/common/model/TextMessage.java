@@ -1,8 +1,10 @@
-package com.ihuxu.chatx.common.model;
+package com.ihuxu.chatxserver.common.model;
 
 import java.util.HashMap;
 
 public class TextMessage extends AbstractMessage {
+
+	private static final long serialVersionUID = 5162083703674962610L;
 	
 	private HashMap<String, String> message = new HashMap<String, String>();
 	

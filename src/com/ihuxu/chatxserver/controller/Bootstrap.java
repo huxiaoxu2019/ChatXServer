@@ -1,11 +1,12 @@
-package com.ihuxu.chatx.controller;
+package com.ihuxu.chatxserver.controller;
 
-import com.ihuxu.chatx.common.model.MessageManager;
-import com.ihuxu.chatx.common.model.TextMessage;
+import com.ihuxu.chatxserver.common.model.MessageManager;
+import com.ihuxu.chatxserver.common.model.TextMessage;
+import com.ihuxu.chatxserver.util.server.Server;
 
 public class Bootstrap {
 	public static void main(String []args) {
-		System.out.println("chatx server is starting...");
+		/**
 		
 		TextMessage textMessage = new TextMessage();
 		textMessage.set("name", "genialx");
@@ -16,6 +17,10 @@ public class Bootstrap {
 		if(messageManager.hasTextMessage()) {
 			System.out.println(messageManager.getTextMessage());
 		}
+		
+		**/
+		Server server = new Server();
+		server.start();
 		
 	}
 }

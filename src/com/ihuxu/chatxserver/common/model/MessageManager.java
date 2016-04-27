@@ -1,8 +1,8 @@
-package com.ihuxu.chatx.common.model;
+package com.ihuxu.chatxserver.common.model;
 
 import java.io.Serializable;
 
-public class MessageManager implements Serializable, Manager{
+public class MessageManager implements Manager, Serializable{
 
 	private static final long serialVersionUID = 5090328872687319042L;
 	
