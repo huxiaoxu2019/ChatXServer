@@ -1,6 +1,6 @@
 package com.ihuxu.chatxserver.common.model;
 
-public interface Manager {
+public interface Package {
 	
 	public final int TYPE_UNKNOWN = 0;
 	public final int TYPE_LOGIN_MSG = 1;

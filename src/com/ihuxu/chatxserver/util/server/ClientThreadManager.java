@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class ClientThreadManager {
 
-	public static HashMap<String, ClientThread> clientServerThreadHashMap = new HashMap<String, ClientThread>();
+	private static HashMap<String, ClientThread> clientServerThreadHashMap = new HashMap<String, ClientThread>();
 	
 	public static ClientThread getClientThread(String key) throws Exception {
 		if(ClientThreadManager.clientServerThreadHashMap.containsKey(key)) {
@@ -26,4 +26,7 @@ public class ClientThreadManager {
 		return false;
 	}
 	
+	public static HashMap<String, ClientThread> getClientThreadHashMap() {
+		return ClientThreadManager.clientServerThreadHashMap;
+	}
 }

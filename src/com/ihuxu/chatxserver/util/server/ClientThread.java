@@ -5,14 +5,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import com.ihuxu.chatxserver.common.model.MessageManager;
+import com.ihuxu.chatxserver.common.model.MessagePackage;
 
 public class ClientThread extends Thread{
 	
 	private Socket socket;
 	private ObjectInputStream objectInputStream;
 	private ObjectOutputStream objectOutputStream;
-	private MessageManager lastMessageManager;
+	private MessagePackage lastMessageManager;
 	private boolean listened = true;
 	private String clientKey;
 	
@@ -27,10 +27,10 @@ public class ClientThread extends Thread{
 			while(this.listened) {
 				try {
 					System.out.println("client server thread listening...");
-					this.lastMessageManager = (MessageManager) this.getObjectInputStream().readObject();
+					this.lastMessageManager = (MessagePackage) this.getObjectInputStream().readObject();
 					System.out.println("recieved one object from client -> " + this.getClientKey());
 					if(this.lastMessageManager.hasTextMessage()) {
-						System.out.println("uid:" + this.lastMessageManager.getTextMessage().get("uid"));
+						System.out.println("uid:" + this.lastMessageManager.getTextMessage().getFrom());
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -57,8 +57,8 @@ public class ClientThread extends Thread{
 	
 	public String getClientKey() throws Exception {
 		if(this.clientKey == null) {
-			this.lastMessageManager = (MessageManager) this.getObjectInputStream().readObject();
-			this.clientKey = this.lastMessageManager.getTextMessage().get("uid");
+			this.lastMessageManager = (MessagePackage) this.getObjectInputStream().readObject();
+			this.clientKey = Long.toString(this.lastMessageManager.getTextMessage().getFrom());
 		}
 		return this.clientKey;
 	}
