@@ -33,18 +33,4 @@ public class MessageManager implements Manager, Serializable{
 		return true;
 	}
 	
-	public String getClientKey() throws Exception {
-		if(this.hasTextMessage()) {
-			TextMessage textMessage = this.getTextMessage();
-			String clientKey = textMessage.get("clientKey");
-			if(clientKey.isEmpty()) {
-				throw new Exception("the clientKey field from the client server is empty.");
-			}
-			return clientKey;
-		} else {
-			throw new Exception("there is not the textMessage object.");
-		}
-	}
-	
-	
 }

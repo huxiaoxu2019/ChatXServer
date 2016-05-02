@@ -58,7 +58,7 @@ public class ClientThread extends Thread{
 	public String getClientKey() throws Exception {
 		if(this.clientKey == null) {
 			this.lastMessageManager = (MessageManager) this.getObjectInputStream().readObject();
-			this.clientKey = this.lastMessageManager.getClientKey();
+			this.clientKey = this.lastMessageManager.getTextMessage().get("uid");
 		}
 		return this.clientKey;
 	}
