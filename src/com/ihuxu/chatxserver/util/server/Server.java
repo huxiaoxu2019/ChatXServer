@@ -18,7 +18,7 @@ public class Server {
 
 		/** listening **/
 		try {
-			serverSocket = new ServerSocket(1720);
+			serverSocket = new ServerSocket(1722);
 			boolean go = true;
 			while (go) {
 				/** listening to the new socket **/
