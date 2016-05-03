@@ -1,6 +1,8 @@
 package com.ihuxu.chatxserver.util.server;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class ClientThreadManager {
 
@@ -26,7 +28,28 @@ public class ClientThreadManager {
 		return false;
 	}
 	
-	public static HashMap<String, ClientThread> getClientThreadHashMap() {
-		return ClientThreadManager.clientServerThreadHashMap;
+	public static void removeClientThread(String key) {
+		ClientThreadManager.clientServerThreadHashMap.remove(key);
+	}
+
+	public static int getClientThreadsCount() {
+		return ClientThreadManager.clientServerThreadHashMap.size();
+	}
+	
+	public static void cleanClientThreadsGarbage() {
+		Iterator<Map.Entry<String, ClientThread>> iterator = ClientThreadManager.clientServerThreadHashMap.entrySet().iterator();
+		while (iterator.hasNext()) {
+			Map.Entry<String, ClientThread> entry = iterator.next();
+			String key = entry.getKey();
+			try {
+				if(ClientThreadManager.getClientThread(key).isListened() == false) {
+					System.out.println("trash client thread key:" + key);
+					ClientThreadManager.getClientThread(key).close();
+					ClientThreadManager.removeClientThread(key);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

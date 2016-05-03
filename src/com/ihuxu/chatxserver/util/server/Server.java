@@ -9,8 +9,7 @@ public class Server {
 
 	private ServerSocket serverSocket;
 
-	public Server() {
-	}
+	public Server() {}
 
 	public void start() {
 		System.out.println("Server starting...");
@@ -20,21 +19,22 @@ public class Server {
 		/** listening **/
 		try {
 			serverSocket = new ServerSocket(1720);
-			Socket socket;
 			boolean go = true;
 			while (go) {
 				/** listening to the new socket **/
-				socket = serverSocket.accept();
+				Socket socket = serverSocket.accept();
 
 				/** client thread **/
 				System.out.println("the recieved the serverSocket.");
-				ClientThread clientThread = new ClientThread(socket);
-				ClientThreadManager.addClientThread(clientThread.getClientKey(), clientThread);
-				clientThread.start();
+				try {
+					ClientThread clientThread = new ClientThread(socket);
+					ClientThreadManager.addClientThread(clientThread.getClientKey(), clientThread);
+					clientThread.start();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

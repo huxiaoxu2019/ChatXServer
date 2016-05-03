@@ -1,8 +1,5 @@
 package com.ihuxu.chatxserver.util.server;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -11,8 +8,7 @@ public class ServerCrontab {
 
 	private static boolean clientSockedChecked = false;
 
-	public ServerCrontab() {
-	}
+	public ServerCrontab() {}
 
 	public static void checkClientSocket() {
 		if (ServerCrontab.isClientSocketChecked()) {
@@ -23,14 +19,12 @@ public class ServerCrontab {
 		}
 		Runnable runnable = new Runnable() {
 			public void run() {
-				System.out.println("ServerCrontab -> checkClientSocket...");
-				System.out.println("the client thread count is " + ClientThreadManager.getClientThreadHashMap().size());
+				System.out.println("ServerCrontab -> the client thread count is " + ClientThreadManager.getClientThreadsCount());
+				ClientThreadManager.cleanClientThreadsGarbage();
 			}
 		};
-		ScheduledExecutorService service = Executors
-				.newSingleThreadScheduledExecutor();
-		// 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
-		service.scheduleAtFixedRate(runnable, 1, 1, TimeUnit.SECONDS);
+		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+		service.scheduleAtFixedRate(runnable, 10, 10, TimeUnit.SECONDS);
 	}
 
 	public static boolean isClientSocketChecked() {
