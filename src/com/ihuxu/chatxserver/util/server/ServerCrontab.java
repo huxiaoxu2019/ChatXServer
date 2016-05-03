@@ -4,6 +4,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import com.ihuxu.chatxserver.common.model.MessagePackage;
+
 public class ServerCrontab {
 
 	private static boolean clientSockedChecked = false;
@@ -21,10 +23,15 @@ public class ServerCrontab {
 			public void run() {
 				System.out.println("ServerCrontab -> the client thread count is " + ClientThreadManager.getClientThreadsCount());
 				ClientThreadManager.cleanClientThreadsGarbage();
+				try {
+					MessagePackageManager.writeMessagePackages(MessagePackage.TYPE_CHAT_TEXT_MSG);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		};
 		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-		service.scheduleAtFixedRate(runnable, 10, 10, TimeUnit.SECONDS);
+		service.scheduleAtFixedRate(runnable, 3, 3, TimeUnit.SECONDS);
 	}
 
 	public static boolean isClientSocketChecked() {

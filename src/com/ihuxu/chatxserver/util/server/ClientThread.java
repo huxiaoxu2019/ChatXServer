@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import com.ihuxu.chatxserver.common.model.MessagePackage;
+import com.ihuxu.chatxserver.common.model.TextMessage;
 
 public class ClientThread extends Thread{
 	
@@ -48,6 +49,14 @@ public class ClientThread extends Thread{
 			e.printStackTrace();
 		}
 	}
+	
+	public void writeMessagePackage(MessagePackage messagePackage) {
+		try {
+			this.getObjectOutputStream().writeObject(messagePackage);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void run() {
 		System.out.println("client server thread running...");
@@ -56,6 +65,14 @@ public class ClientThread extends Thread{
 				System.out.println("client server thread listening...");
 				MessagePackage messagePackage = (MessagePackage) this.getObjectInputStream().readObject();
 				System.out.println("recieved one object from client -> " + this.getClientKey());
+				switch(messagePackage.getType()) {
+				case MessagePackage.TYPE_CHAT_TEXT_MSG:
+					System.out.println("the message package type is type_chat_text_msg. to:" + messagePackage.getTextMessage().getTo());
+					MessagePackageManager.pushMessgagePackageToQueue(MessagePackage.TYPE_CHAT_TEXT_MSG, messagePackage);
+					break;
+				default:
+					throw new Exception("unknow MessagePackage type.");
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 				this.setListened(false);

@@ -2,12 +2,15 @@ package com.ihuxu.chatxserver.util.server;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
+import com.ihuxu.chatxserver.common.model.MessagePackage;
 
 public class ClientThreadManager {
-
-	private static HashMap<String, ClientThread> clientServerThreadHashMap = new HashMap<String, ClientThread>();
 	
+	private static HashMap<String, ClientThread> clientServerThreadHashMap = new HashMap<String, ClientThread>();
+		
 	public static ClientThread getClientThread(String key) throws Exception {
 		if(ClientThreadManager.clientServerThreadHashMap.containsKey(key)) {
 			return ClientThreadManager.clientServerThreadHashMap.get(key);
@@ -27,7 +30,7 @@ public class ClientThreadManager {
 		}
 		return false;
 	}
-	
+
 	public static void removeClientThread(String key) {
 		ClientThreadManager.clientServerThreadHashMap.remove(key);
 	}
@@ -52,4 +55,6 @@ public class ClientThreadManager {
 			}
 		}
 	}
+	
+	
 }
