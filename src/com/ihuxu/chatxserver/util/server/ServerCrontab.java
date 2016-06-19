@@ -31,7 +31,7 @@ public class ServerCrontab {
 			}
 		};
 		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-		service.scheduleAtFixedRate(runnable, 3, 3, TimeUnit.SECONDS);
+		service.scheduleAtFixedRate(runnable, com.ihuxu.chatxserver.conf.Server.CRONTAB_INTERVAL, com.ihuxu.chatxserver.conf.Server.CRONTAB_INTERVAL, TimeUnit.SECONDS);
 	}
 
 	public static boolean isClientSocketChecked() {
