@@ -30,6 +30,7 @@ public class ClientThread extends Thread{
 			try {
 				this.loginMessagePackage = (MessagePackage) this.getObjectInputStream().readObject();
 				if(this.loginMessagePackage.getType() != MessagePackage.TYPE_LOGIN_MSG) {
+					this.close();
 					throw new Exception("the first message package is not login msg type package.");
 				}
 			} catch (ClassNotFoundException e) {
