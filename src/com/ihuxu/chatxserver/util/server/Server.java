@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import com.ihuxu.chatxserver.common.model.MessagePackage;
+
 
 public class Server {
 
@@ -28,8 +30,15 @@ public class Server {
 				System.out.println("the recieved the serverSocket.");
 				try {
 					ClientThread clientThread = new ClientThread(socket);
-					ClientThreadManager.addClientThread(clientThread.getClientKey(), clientThread);
-					clientThread.start();
+					if(ClientThreadManager.addClientThread(clientThread.getClientKey(), clientThread)) {
+						clientThread.writeLoginMessagePackage(MessagePackage.TYPE_LOGIN_SUC_MSG);
+						clientThread.start();
+					} else {
+						clientThread.writeLoginMessagePackage(MessagePackage.TYPE_LOGIN_FAI_MSG);
+						clientThread.close();
+						clientThread = null;
+					}
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

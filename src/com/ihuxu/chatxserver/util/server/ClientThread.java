@@ -22,7 +22,6 @@ public class ClientThread extends Thread{
 		this.socket = socket;
 		this.readAndSetLoginMessagePackage();
 		this.clientKey = this.getClientKey();
-		this.writeLoginMessagePackage();
 	}
 	
 	public MessagePackage readAndSetLoginMessagePackage() throws Exception {
@@ -42,9 +41,9 @@ public class ClientThread extends Thread{
 		return this.loginMessagePackage;
 	}
 	
-	public void writeLoginMessagePackage() {
+	public void writeLoginMessagePackage(int type) {
 		try {
-			MessagePackage mP = new MessagePackage(MessagePackage.TYPE_LOGIN_SUC_MSG);
+			MessagePackage mP = new MessagePackage(type);
 			this.getObjectOutputStream().writeObject(mP);
 		} catch (Exception e) {
 			e.printStackTrace();
