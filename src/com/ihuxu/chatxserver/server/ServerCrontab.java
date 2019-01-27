@@ -1,4 +1,4 @@
-package com.ihuxu.chatxserver.util.server;
+package com.ihuxu.chatxserver.server;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -31,7 +31,7 @@ public class ServerCrontab {
 			}
 		};
 		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-		service.scheduleAtFixedRate(runnable, com.ihuxu.chatxserver.conf.Server.CRONTAB_INTERVAL, com.ihuxu.chatxserver.conf.Server.CRONTAB_INTERVAL, TimeUnit.MILLISECONDS);
+		service.scheduleAtFixedRate(runnable, com.ihuxu.chatxserver.conf.ServerConfig.CRONTAB_INTERVAL, com.ihuxu.chatxserver.conf.ServerConfig.CRONTAB_INTERVAL, TimeUnit.MILLISECONDS);
 	}
 
 	public static boolean isClientSocketChecked() {

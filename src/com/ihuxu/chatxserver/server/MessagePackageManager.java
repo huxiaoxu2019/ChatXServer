@@ -1,4 +1,4 @@
-package com.ihuxu.chatxserver.util.server;
+package com.ihuxu.chatxserver.server;
 
 import java.util.LinkedList;
 import java.util.Queue;

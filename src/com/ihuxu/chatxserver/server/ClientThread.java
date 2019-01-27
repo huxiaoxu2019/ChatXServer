@@ -1,4 +1,4 @@
-package com.ihuxu.chatxserver.util.server;
+package com.ihuxu.chatxserver.server;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -6,7 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import com.ihuxu.chatxserver.common.model.MessagePackage;
-import com.ihuxu.chatxserver.common.model.TextMessage;
 
 public class ClientThread extends Thread{
 	

@@ -1,6 +1,6 @@
 package com.ihuxu.chatxserver.conf;
 
-public interface Server {
+public interface ServerConfig {
 	
 	/**
 	 * The interval(milliseconds) of the server crontab.
