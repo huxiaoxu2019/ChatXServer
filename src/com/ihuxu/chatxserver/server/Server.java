@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import com.ihuxu.chatxserver.client.Client;
-import com.ihuxu.chatxserver.client.ClientLoginPool;
-import com.ihuxu.chatxserver.common.model.MessagePackage;
-
+import com.ihuxu.chatxserver.client.NotLoggedClient;
+import com.ihuxu.chatxserver.client.NotLoggedClientPool;
 
 public class Server {
 
@@ -31,9 +29,9 @@ public class Server {
 
 			        /** client thread **/
 			        System.out.println("the recieved the serverSocket.");
-			        Client client = new Client(socket);
+			        NotLoggedClient client = new NotLoggedClient(socket);
 			        try {
-			            ClientLoginPool.getInstance().offer(client);
+			            NotLoggedClientPool.getInstance().offer(client);
 			        } catch (Exception e) {
 			            // Server is full, try later.
 			            System.err.println("Server is full, try later.");
