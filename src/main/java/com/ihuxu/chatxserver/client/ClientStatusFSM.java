@@ -29,7 +29,9 @@ public class ClientStatusFSM {
 	 * 构建状态机 —— 树型数据结构.
 	 */
 	private void build() {
-		
+		//LocalTime currentTime = new LocalTime();
+		//gson gson = new Gson();
+		//Gson gson = new Gson();
 	}
 	
 	public static ClientStatusFSM getInstance() {

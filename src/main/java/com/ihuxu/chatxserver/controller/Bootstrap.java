@@ -1,4 +1,4 @@
-package com.ihuxu.chatxserver.controller;
+package main.java.com.ihuxu.chatxserver.controller;
 
 import com.ihuxu.chatxserver.server.Server;
 

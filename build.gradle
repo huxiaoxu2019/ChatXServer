@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.5'
+}
+
+jar {
+    baseName = 'chatxserver'
+    version =  '0.0.1'
+}
